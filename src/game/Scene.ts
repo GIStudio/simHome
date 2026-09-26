@@ -12,10 +12,12 @@ interface Firefly {
 
 /**
  * 树洞场景：背景 + 家具 + 昼夜光照 + 萤火虫。
- * 家具贴图按 manifest 布置，光照层随 WorldClock 变化。
+ * root 为静态场景（背景/家具/窗色），fx 为光照特效层
+ * （夜色蒙版/暖光/萤火虫），由引擎挂到世界顶层以覆盖精灵。
  */
 export class SceneHollow {
   readonly root = new Container()
+  readonly fx = new Container()
   private windowTint: Graphics
   private nightOverlay: Graphics
   private warmLights: Container
@@ -24,10 +26,11 @@ export class SceneHollow {
   private t = 0
 
   constructor(bg: Texture, furniture: Map<string, Texture>) {
+    this.root.sortableChildren = true
+
     const bgSprite = new Sprite(bg)
     bgSprite.zIndex = 0
     this.root.addChild(bgSprite)
-    this.root.sortableChildren = true
 
     for (const item of FURNITURE_LAYOUT) {
       const tex = furniture.get(item.id)
@@ -44,30 +47,29 @@ export class SceneHollow {
     this.windowTint.zIndex = 1
     this.root.addChild(this.windowTint)
 
-    // 天体：窗内小月亮/太阳
-    this.windowTint.eventMode = 'none'
+    // ---- 光照特效层（覆盖精灵） ----
+    this.fx.eventMode = 'none'
+    this.fx.sortableChildren = true
 
-    // 暖色光源（灯笼 + 火炉），夜晚渐显
-    this.warmLights = new Container()
-    this.warmLights.zIndex = 50
-    this.warmLights.eventMode = 'none'
-    this.warmLights.addChild(this.makeGlow(304, 40, 26))
-    this.warmLights.addChild(this.makeGlow(136, 196, 30))
-    this.root.addChild(this.warmLights)
-
-    // 夜色蒙版（multiply）
+    // 夜色蒙版（multiply，压暗一切）
     this.nightOverlay = new Graphics()
     this.nightOverlay.rect(0, 0, 480, 270).fill({ color: 0x1a2448 })
     this.nightOverlay.blendMode = 'multiply'
-    this.nightOverlay.zIndex = 49
-    this.nightOverlay.eventMode = 'none'
-    this.root.addChild(this.nightOverlay)
+    this.nightOverlay.zIndex = 1
+    this.fx.addChild(this.nightOverlay)
 
-    // 萤火虫
+    // 暖色光源（灯笼 + 火炉），夜晚渐显
+    this.warmLights = new Container()
+    this.warmLights.zIndex = 2
+    this.warmLights.addChild(this.makeGlow(304, 40, 26))
+    this.warmLights.addChild(this.makeGlow(136, 196, 34))
+    this.warmLights.addChild(this.makeGlow(136, 196, 18))
+    this.fx.addChild(this.warmLights)
+
+    // 萤火虫（最顶层）
     this.fireflyLayer = new Graphics()
-    this.fireflyLayer.zIndex = 60
-    this.fireflyLayer.eventMode = 'none'
-    this.root.addChild(this.fireflyLayer)
+    this.fireflyLayer.zIndex = 3
+    this.fx.addChild(this.fireflyLayer)
     for (let i = 0; i < 12; i++) {
       this.fireflies.push({
         baseX: 40 + Math.random() * 400,
@@ -83,9 +85,9 @@ export class SceneHollow {
   private makeGlow(cx: number, cy: number, r: number): Graphics {
     const g = new Graphics()
     const layers = [
-      { r: 1.0, a: 0.10 },
-      { r: 0.66, a: 0.14 },
-      { r: 0.36, a: 0.20 },
+      { r: 1.0, a: 0.16 },
+      { r: 0.66, a: 0.22 },
+      { r: 0.36, a: 0.30 },
     ]
     for (const l of layers) {
       g.circle(cx, cy, r * l.r).fill({ color: 0xffb84d, alpha: l.a })
@@ -97,7 +99,7 @@ export class SceneHollow {
   update(dt: number, clock: WorldClock) {
     this.t += dt
     const dark = 1 - clock.daylight // 0 白天 .. 1 深夜
-    this.nightOverlay.alpha = dark * 0.62
+    this.nightOverlay.alpha = dark * 0.6
     this.warmLights.alpha = Math.min(1, dark * 1.6)
     this.windowTint.alpha = dark * 0.85
 

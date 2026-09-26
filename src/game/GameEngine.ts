@@ -96,6 +96,9 @@ export class GameEngine {
     this.scene = new SceneHollow(bgTex, furnitureTex)
     this.scene.root.zIndex = 0
     this.world.addChild(this.scene.root)
+    // 光照特效层挂世界顶层，夜色/暖光/萤火虫覆盖精灵
+    this.scene.fx.zIndex = 500
+    this.world.addChild(this.scene.fx)
 
     // 精灵动画纹理切帧
     for (const def of FAIRY_DEFS) {
@@ -181,7 +184,9 @@ export class GameEngine {
   }
 
   private tick(realDt: number) {
-    const dt = realDt * this.speed
+    // 页面不可见后恢复时 deltaMS 可能巨大，钳制单帧步长防止状态瞬间跳变
+    const safeDt = Math.min(realDt, 0.1)
+    const dt = safeDt * this.speed
     this.clock.update(dt)
     this.scene.update(dt, this.clock)
     for (const f of this.fairies) f.update(dt, this.fairies)
