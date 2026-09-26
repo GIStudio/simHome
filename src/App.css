@@ -1,0 +1,225 @@
+.app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.game-canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.game-canvas canvas {
+  display: block;
+}
+
+/* ---------- 通用面板 ---------- */
+.panel {
+  background: var(--panel);
+  border: 2px solid var(--panel-border);
+  border-radius: 8px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+  color: var(--text);
+}
+
+/* ---------- HUD ---------- */
+.hud {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-icon {
+  font-size: 18px;
+}
+
+.hud-time {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.hud-phase {
+  color: var(--text-dim);
+}
+
+.hud-day {
+  padding-left: 8px;
+  border-left: 1px solid var(--panel-border);
+  color: var(--text-dim);
+}
+
+/* ---------- 时间控制 ---------- */
+.time-controls {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+}
+
+.time-controls button {
+  min-width: 38px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-dim);
+  font: inherit;
+  cursor: pointer;
+}
+
+.time-controls button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+.time-controls button.active {
+  background: var(--accent);
+  color: #221a08;
+  font-weight: 700;
+}
+
+/* ---------- 精灵列表 ---------- */
+.roster {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.roster-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px 5px 8px;
+  cursor: pointer;
+  font: inherit;
+  transition: transform 0.12s ease;
+}
+
+.roster-item:hover {
+  transform: translateX(3px);
+}
+
+.roster-item.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+.roster-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.roster-name {
+  font-weight: 600;
+}
+
+.roster-emoji {
+  font-size: 15px;
+}
+
+/* ---------- 详情面板 ---------- */
+.info-panel {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 210px;
+  padding: 12px;
+  animation: slide-in 0.18s ease;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: var(--text);
+}
+
+.info-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-avatar {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.35);
+  font-size: 22px;
+}
+
+.info-name {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.info-activity {
+  color: var(--accent-green);
+  font-size: 13px;
+}
+
+.info-mood {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.mood-bar {
+  height: 10px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.mood-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+.info-hint {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--text-dim);
+  opacity: 0.75;
+}

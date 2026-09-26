@@ -1,7 +1,18 @@
+import { GameCanvas } from './components/GameCanvas'
+import { HudOverlay } from './components/HudOverlay'
+import { TimeControls } from './components/TimeControls'
+import { FairyRoster } from './components/FairyRoster'
+import { FairyInfoPanel } from './components/FairyInfoPanel'
+import './App.css'
+
 function App() {
   return (
-    <div style={{ display: 'grid', placeItems: 'center', height: '100%' }}>
-      <h1>精灵树洞 SimHome</h1>
+    <div className="app">
+      <GameCanvas />
+      <HudOverlay />
+      <FairyRoster />
+      <FairyInfoPanel />
+      <TimeControls />
     </div>
   )
 }

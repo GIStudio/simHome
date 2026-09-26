@@ -13,7 +13,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { PNG } from 'pngjs'
 
-const OUT_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'assets', 'sprites')
+const OUT_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'public', 'sprites')
 const FRAME = 32
 
 /* ---------------------------------- 基础原语 ---------------------------------- */
