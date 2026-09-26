@@ -1,0 +1,226 @@
+{
+  "frameSize": 32,
+  "fairies": {
+    "moss": {
+      "file": "fairy-moss.png",
+      "animations": {
+        "idle": {
+          "start": 0,
+          "count": 4,
+          "fps": 4
+        },
+        "walk": {
+          "start": 4,
+          "count": 6,
+          "fps": 8
+        },
+        "sleep": {
+          "start": 10,
+          "count": 4,
+          "fps": 2
+        },
+        "eat": {
+          "start": 14,
+          "count": 4,
+          "fps": 6
+        },
+        "read": {
+          "start": 18,
+          "count": 4,
+          "fps": 3
+        },
+        "play": {
+          "start": 22,
+          "count": 6,
+          "fps": 8
+        },
+        "dance": {
+          "start": 28,
+          "count": 4,
+          "fps": 6
+        }
+      }
+    },
+    "berry": {
+      "file": "fairy-berry.png",
+      "animations": {
+        "idle": {
+          "start": 0,
+          "count": 4,
+          "fps": 4
+        },
+        "walk": {
+          "start": 4,
+          "count": 6,
+          "fps": 8
+        },
+        "sleep": {
+          "start": 10,
+          "count": 4,
+          "fps": 2
+        },
+        "eat": {
+          "start": 14,
+          "count": 4,
+          "fps": 6
+        },
+        "read": {
+          "start": 18,
+          "count": 4,
+          "fps": 3
+        },
+        "play": {
+          "start": 22,
+          "count": 6,
+          "fps": 8
+        },
+        "dance": {
+          "start": 28,
+          "count": 4,
+          "fps": 6
+        }
+      }
+    },
+    "sky": {
+      "file": "fairy-sky.png",
+      "animations": {
+        "idle": {
+          "start": 0,
+          "count": 4,
+          "fps": 4
+        },
+        "walk": {
+          "start": 4,
+          "count": 6,
+          "fps": 8
+        },
+        "sleep": {
+          "start": 10,
+          "count": 4,
+          "fps": 2
+        },
+        "eat": {
+          "start": 14,
+          "count": 4,
+          "fps": 6
+        },
+        "read": {
+          "start": 18,
+          "count": 4,
+          "fps": 3
+        },
+        "play": {
+          "start": 22,
+          "count": 6,
+          "fps": 8
+        },
+        "dance": {
+          "start": 28,
+          "count": 4,
+          "fps": 6
+        }
+      }
+    },
+    "glow": {
+      "file": "fairy-glow.png",
+      "animations": {
+        "idle": {
+          "start": 0,
+          "count": 4,
+          "fps": 4
+        },
+        "walk": {
+          "start": 4,
+          "count": 6,
+          "fps": 8
+        },
+        "sleep": {
+          "start": 10,
+          "count": 4,
+          "fps": 2
+        },
+        "eat": {
+          "start": 14,
+          "count": 4,
+          "fps": 6
+        },
+        "read": {
+          "start": 18,
+          "count": 4,
+          "fps": 3
+        },
+        "play": {
+          "start": 22,
+          "count": 6,
+          "fps": 8
+        },
+        "dance": {
+          "start": 28,
+          "count": 4,
+          "fps": 6
+        }
+      }
+    }
+  },
+  "furniture": [
+    {
+      "id": "bed",
+      "file": "furniture-bed.png",
+      "w": 56,
+      "h": 38
+    },
+    {
+      "id": "table",
+      "file": "furniture-table.png",
+      "w": 44,
+      "h": 30
+    },
+    {
+      "id": "shelf",
+      "file": "furniture-shelf.png",
+      "w": 38,
+      "h": 48
+    },
+    {
+      "id": "lamp",
+      "file": "furniture-lamp.png",
+      "w": 18,
+      "h": 30
+    },
+    {
+      "id": "window",
+      "file": "furniture-window.png",
+      "w": 34,
+      "h": 34
+    },
+    {
+      "id": "rug",
+      "file": "furniture-rug.png",
+      "w": 72,
+      "h": 30
+    },
+    {
+      "id": "stove",
+      "file": "furniture-stove.png",
+      "w": 32,
+      "h": 40
+    },
+    {
+      "id": "plant",
+      "file": "furniture-plant.png",
+      "w": 22,
+      "h": 28
+    },
+    {
+      "id": "ball",
+      "file": "furniture-ball.png",
+      "w": 14,
+      "h": 14
+    }
+  ],
+  "background": {
+    "file": "scene-bg.png",
+    "w": 480,
+    "h": 270
+  }
+}
